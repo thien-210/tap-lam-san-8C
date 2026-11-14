@@ -750,6 +750,11 @@
     </div>
   </div>
 
+  <!-- Tệp âm thanh nền -->
+  <audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
   <script>
     /* =========================================================================
        HỆ THỐNG ÂM THANH RETRO (WEB AUDIO API)
@@ -1012,9 +1017,15 @@
     drawBgFlappy();
 
     /* =========================================================================
-       ĐIỀU HƯỚNG MÀN HÌNH
+       ĐIỀU HƯỚNG MÀN HÌNH (Bật nhạc nền khi bấm Bắt Đầu)
        ========================================================================= */
     function goToMenu() {
+      const music = document.getElementById("bgMusic");
+      if (music) {
+        music.volume = 0.4;
+        music.play().catch(e => console.log("Trình duyệt chặn autoplay:", e));
+      }
+
       document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
       document.getElementById("menuScreen").classList.add("active");
     }
@@ -1035,7 +1046,7 @@
     }
 
     /* =========================================================================
-       MỤC 1: TRÒ CHƠI GIẢI ĐỐ (5 CÂU HỎI)
+       MỤC 1: TRÒ CHƠI GIẢI ĐỐ
        ========================================================================= */
     let currentQuizIdx = 0;
     function initQuiz() { currentQuizIdx = 0; renderQuiz(); }
@@ -1161,7 +1172,7 @@
             selectedPieceIdx = null; renderPuzzle();
             if (puzzleOrder.every((v, i) => v === i)) {
               playSound('win');
-              document.getElementById("puzzleStatus").innerText = "🎉 Hoàn thành bức ảnh cô GVCN!";
+              document.getElementById("puzzleStatus").innerText = "🎉 Hoàn thành bức ảnh lớp 8C!";
             }
           }
         };
