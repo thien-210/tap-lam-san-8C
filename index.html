@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thước Phim Thanh Xuân 20/11 - Lớp 8C (A9-XT)</title>
+  <!-- Font Pixel Art 8-bit hỗ trợ tiếng Việt -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      font-family: 'VT323', monospace;
+    }
+
+    body {
+      background-color: #70c5ce;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Nền Flappy Bird 3D Retro */
+    #bgCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      image-rendering: pixelated;
+    }
+
+    /* ================= KHUNG BẢNG CHÍNH TÔNG KEM PASTEL NHẸ NHÀNG ================= */
+    .screen {
+      position: relative;
+      z-index: 10;
+      width: 94%;
+      max-width: 820px;
+      background: #fdfbf2;
+      border: 4px solid #6b5b4b;
+      box-shadow:
+        inset 4px 4px 0 #ffffff,
+        inset -4px -4px 0 #ebe3ce,
+        0 10px 0 #6b5b4b,
+        0 18px 28px rgba(74, 62, 50, 0.25);
+      padding: 28px 24px 26px;
+      text-align: center;
+      display: none;
+      animation: popIn 0.2s steps(4);
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    .corner-pin {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #d8ccb4;
+      border: 2px solid #6b5b4b;
+    }
+    .pin-tl { top: 8px; left: 8px; }
+    .pin-tr { top: 8px; right: 8px; }
+    .pin-bl { bottom: 8px; left: 8px; }
+    .pin-br { bottom: 8px; right: 8px; }
+
+    @keyframes popIn {
+      from { transform: scale(0.92); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    /* ================= MÀN HÌNH MỞ ĐẦU (INTRO SCREEN) ================= */
+    .intro-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 0;
+      gap: 22px;
+    }
+
+    .intro-badge {
+      background: #dff3f5;
+      border: 4px solid #6b5b4b;
+      padding: 10px 24px;
+      font-size: 1.45rem;
+      color: #4f6d7a;
+      font-weight: bold;
+      box-shadow: inset 0 3px 0 #ffffff, 0 4px 0 #6b5b4b;
+    }
+
+    .intro-title {
+      font-family: 'Press Start 2P', 'VT323', monospace;
+      font-size: 2.1rem;
+      color: #ffcf56;
+      line-height: 1.45;
+      text-transform: uppercase;
+      text-shadow:
+        3px 0 0 #6b5b4b,
+        -3px 0 0 #6b5b4b,
+        0 3px 0 #6b5b4b,
+        0 -3px 0 #6b5b4b,
+        0 6px 0 #e0a836,
+        0 10px 0 #6b5b4b;
+      margin: 10px 0;
+    }
+
+    .intro-subtitle {
+      font-size: 1.6rem;
+      color: #827363;
+      max-width: 600px;
+      line-height: 1.35;
+    }
+
+    .btn-start {
+      background: #a8df8e;
+      color: #ffffff;
+      font-family: 'Press Start 2P', 'VT323', monospace;
+      font-size: 1.4rem;
+      padding: 16px 36px;
+      border: 4px solid #6b5b4b;
+      cursor: pointer;
+      box-shadow:
+        inset 0 4px 0 #ccf2ba,
+        inset 0 -4px 0 #88c26d,
+        0 7px 0 #6b5b4b;
+      text-shadow: 2px 2px 0 #6b5b4b;
+      animation: pulseBlink 1.2s infinite alternate;
+      margin-top: 10px;
+    }
+
+    .btn-start:hover { filter: brightness(1.05); }
+    .btn-start:active { transform: translateY(4px); box-shadow: 0 3px 0 #6b5b4b; }
+
+    @keyframes pulseBlink {
+      from { transform: scale(1); }
+      to { transform: scale(1.04); }
+    }
+
+    /* ================= BẢNG TIÊU ĐỀ & RUY-BĂNG PASTEL 3D ================= */
+    .title-board {
+      background: #dff3f5;
+      border: 4px solid #6b5b4b;
+      padding: 16px 14px 22px;
+      margin-bottom: 26px;
+      position: relative;
+      box-shadow:
+        inset 4px 4px 0 #f4fbfc,
+        inset -4px -4px 0 #bce0e4,
+        0 6px 0 #cfc3ab;
+    }
+
+    .text-3d-title {
+      font-family: 'Press Start 2P', 'VT323', monospace;
+      font-size: 1.7rem;
+      color: #ffcf56;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      line-height: 1.45;
+      text-shadow:
+        2px 0 0 #6b5b4b,
+        -2px 0 0 #6b5b4b,
+        0 2px 0 #6b5b4b,
+        0 -2px 0 #6b5b4b,
+        0 4px 0 #e0a836,
+        0 7px 0 #6b5b4b;
+    }
+
+    .ribbon-banner {
+      position: absolute;
+      bottom: -17px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #f59b8c;
+      color: #ffffff;
+      font-size: 1.38rem;
+      padding: 3px 22px;
+      border: 3px solid #6b5b4b;
+      white-space: nowrap;
+      box-shadow:
+        inset 0 3px 0 #ffc2b8,
+        inset 0 -3px 0 #d97a6a,
+        0 4px 0 #6b5b4b;
+      text-shadow: 2px 2px 0 #6b5b4b;
+    }
+
+    /* ================= MENU 4 MỤC ================= */
+    .menu-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .quest-item {
+      display: flex;
+      align-items: stretch;
+      background: #ffffff;
+      border: 4px solid #6b5b4b;
+      cursor: pointer;
+      text-align: left;
+      box-shadow: inset -3px -3px 0 #ede6d6, 0 6px 0 #6b5b4b;
+      transition: transform 0.05s, box-shadow 0.05s, filter 0.1s;
+    }
+
+    .quest-item:hover {
+      filter: brightness(1.02);
+      transform: translateY(-2px);
+      box-shadow: inset -3px -3px 0 #ede6d6, 0 8px 0 #6b5b4b;
+    }
+
+    .quest-item:active {
+      transform: translateY(4px);
+      box-shadow: inset 2px 2px 0 #ede6d6, 0 2px 0 #6b5b4b;
+    }
+
+    .quest-num {
+      width: 64px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 1.35rem;
+      color: #ffffff;
+      border-right: 4px solid #6b5b4b;
+      text-shadow: 2px 2px 0 #6b5b4b;
+      flex-shrink: 0;
+    }
+
+    .q-green .quest-num { background: #a8df8e; box-shadow: inset 3px 3px 0 #ccf2ba, inset -3px -3px 0 #88c26d; }
+    .q-blue .quest-num { background: #9bd4e4; box-shadow: inset 3px 3px 0 #c7ecf7, inset -3px -3px 0 #7bb7c7; }
+    .q-purple .quest-num { background: #cbb2fe; box-shadow: inset 3px 3px 0 #e3d4ff, inset -3px -3px 0 #ab91e0; }
+    .q-orange .quest-num { background: #ffbe88; box-shadow: inset 3px 3px 0 #ffdcbf, inset -3px -3px 0 #e09f69; }
+
+    .quest-info {
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+      width: 100%;
+    }
+
+    .quest-title {
+      font-family: 'Press Start 2P', 'VT323', monospace;
+      font-size: 0.88rem;
+      color: #4f6d7a;
+      line-height: 1.35;
+    }
+
+    .quest-desc {
+      font-size: 1.3rem;
+      color: #827363;
+      line-height: 1.2;
+    }
+
+    /* ================= THANH ĐIỀU HƯỚNG MỤC CON ================= */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding: 8px 12px;
+      background: #f2ece1;
+      border: 4px solid #6b5b4b;
+      box-shadow: inset 2px 2px 0 #ffffff, 0 4px 0 #6b5b4b;
+    }
+
+    .btn-back {
+      background: #f59b8c;
+      color: white;
+      border: 3px solid #6b5b4b;
+      padding: 5px 14px;
+      font-size: 1.35rem;
+      cursor: pointer;
+      box-shadow: inset 0 3px 0 #ffc2b8, 0 4px 0 #6b5b4b;
+      text-shadow: 2px 2px 0 #6b5b4b;
+    }
+
+    .btn-back:active { transform: translateY(3px); box-shadow: 0 1px 0 #6b5b4b; }
+
+    .status-badge {
+      background: #dff3f5;
+      color: #4f6d7a;
+      border: 3px solid #6b5b4b;
+      padding: 4px 16px;
+      font-size: 1.4rem;
+      font-weight: bold;
+      box-shadow: inset 0 3px 0 #ffffff, 0 4px 0 #6b5b4b;
+    }
+
+    /* ================= MỤC 1: GIẢI ĐỐ ================= */
+    .quiz-box {
+      background: #e9f6f8;
+      border: 4px solid #6b5b4b;
+      padding: 20px;
+      margin-bottom: 16px;
+      font-size: 1.65rem;
+      color: #4a5c66;
+      line-height: 1.45;
+      box-shadow: inset 0 4px 0 #ffffff, 0 5px 0 #6b5b4b;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .option-btn {
+      background: #ffffff;
+      border: 4px solid #6b5b4b;
+      padding: 13px;
+      font-size: 1.55rem;
+      color: #5c4f42;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: inset -3px -3px 0 #ede6d6, 0 5px 0 #6b5b4b;
+    }
+
+    .option-btn:hover { background: #fff9eb; }
+    .option-btn:active { transform: translateY(4px); box-shadow: 0 1px 0 #6b5b4b; }
+    .option-btn.correct { background: #a8df8e; color: #fff; text-shadow: 2px 2px 0 #6b5b4b; box-shadow: inset 0 3px 0 #ccf2ba, 0 5px 0 #6b5b4b; }
+    .option-btn.wrong { background: #f59b8c; color: #fff; text-shadow: 2px 2px 0 #6b5b4b; box-shadow: inset 0 3px 0 #ffc2b8, 0 5px 0 #6b5b4b; }
+
+    /* ================= MỤC 2: LẬT THẺ (8 LÁ) ================= */
+    .memory-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    .mem-card {
+      aspect-ratio: 1 / 1;
+      perspective: 900px;
+      cursor: pointer;
+    }
+
+    .mem-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.35s steps(5);
+    }
+
+    .mem-card.flipped .mem-inner { transform: rotateY(180deg); }
+
+    .mem-front, .mem-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border: 4px solid #6b5b4b;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      box-shadow: 0 5px 0 #6b5b4b;
+    }
+
+    .mem-front {
+      background: #ffbe88;
+      font-family: 'Press Start 2P', monospace;
+      color: #ffffff;
+      font-size: 1.4rem;
+      text-shadow: 2px 2px 0 #6b5b4b;
+      box-shadow: inset 3px 3px 0 #ffdcbf, inset -3px -3px 0 #e09f69, 0 5px 0 #6b5b4b;
+    }
+
+    .mem-back { background: #fff; transform: rotateY(180deg); }
+    .mem-back img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ================= MỤC 3: GHÉP HÌNH ================= */
+    .puzzle-container { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .puzzle-board {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+      width: 320px;
+      height: 320px;
+      border: 5px solid #6b5b4b;
+      background: #6b5b4b;
+      box-shadow: 0 7px 0 #6b5b4b;
+    }
+    .puzzle-piece { width: 100%; height: 100%; background-size: 320px 320px; cursor: pointer; }
+    .puzzle-piece.selected { outline: 4px solid #ffcf56; z-index: 2; transform: scale(0.94); }
+
+    /* ================= MỤC 4: HỘP QUÀ 3D KHỐI LẬP PHƯƠNG ================= */
+    .gift-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 310px;
+      gap: 20px;
+      padding: 10px 0;
+    }
+
+    .gift-3d-wrapper {
+      position: relative;
+      width: 170px;
+      height: 175px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      transition: transform 0.12s ease;
+    }
+
+    .gift-3d-wrapper:hover { transform: translateY(-4px); }
+    .gift-3d-wrapper:active { transform: scale(0.95); }
+
+    .gift-shadow {
+      position: absolute;
+      bottom: -10px;
+      width: 156px;
+      height: 22px;
+      background: rgba(107, 91, 75, 0.25);
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .gift-bow {
+      position: relative;
+      width: 96px;
+      height: 34px;
+      z-index: 4;
+      margin-bottom: -6px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+    }
+
+    .bow-loop-left, .bow-loop-right {
+      width: 44px;
+      height: 30px;
+      background: linear-gradient(180deg, #ffe58f 0%, #ffcf56 100%);
+      border: 4px solid #6b5b4b;
+      box-shadow: inset 0 3px 0 #fff7d6;
+    }
+    .bow-loop-left { border-radius: 20px 20px 4px 20px; transform: rotate(-14deg); margin-right: -6px; }
+    .bow-loop-right { border-radius: 20px 20px 20px 4px; transform: rotate(14deg); margin-left: -6px; }
+    .bow-knot {
+      position: absolute;
+      bottom: 0;
+      width: 24px;
+      height: 22px;
+      background: #ffcf56;
+      border: 4px solid #6b5b4b;
+      border-radius: 6px;
+      box-shadow: inset 0 2px 0 #fff7d6;
+      z-index: 5;
+    }
+
+    .gift-lid {
+      position: relative;
+      width: 164px;
+      height: 38px;
+      background: linear-gradient(180deg, #ff998a 0%, #f07462 100%);
+      border: 4px solid #6b5b4b;
+      border-radius: 8px;
+      box-shadow: inset 0 4px 0 #ffc7bf, inset 0 -4px 0 #cc5645, 0 5px 0 #6b5b4b;
+      z-index: 3;
+      display: flex;
+      justify-content: center;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .gift-lid-ribbon {
+      width: 34px;
+      height: 100%;
+      background: linear-gradient(180deg, #ffe58f 0%, #ffcf56 100%);
+      border-left: 4px solid #6b5b4b;
+      border-right: 4px solid #6b5b4b;
+    }
+
+    .gift-body {
+      position: relative;
+      width: 144px;
+      height: 105px;
+      margin-top: -2px;
+      background: linear-gradient(90deg, #ffa699 0%, #f58271 72%, #d96452 72%, #d96452 100%);
+      border: 4px solid #6b5b4b;
+      border-radius: 0 0 10px 10px;
+      box-shadow: inset 4px 0 0 #ffc7bf, inset 0 -6px 0 #bd4f3e, 0 8px 0 #6b5b4b;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .gift-body-ribbon {
+      width: 34px;
+      height: 100%;
+      background: linear-gradient(180deg, #ffcf56 0%, #e8b02e 100%);
+      border-left: 4px solid #6b5b4b;
+      border-right: 4px solid #6b5b4b;
+      box-shadow: inset 0 4px 0 rgba(0,0,0,0.12);
+    }
+
+    .gift-sparkle {
+      position: absolute;
+      font-size: 1.4rem;
+      animation: twinkle 1.2s infinite alternate;
+      pointer-events: none;
+    }
+    .sp-1 { top: 20px; left: -16px; }
+    .sp-2 { top: 65px; right: -18px; animation-delay: 0.4s; }
+
+    @keyframes twinkle {
+      from { transform: scale(0.8); opacity: 0.6; }
+      to { transform: scale(1.2); opacity: 1; }
+    }
+
+    @keyframes giftShake {
+      0% { transform: rotate(0deg) scale(1); }
+      15% { transform: rotate(-7deg) scale(1.04); }
+      30% { transform: rotate(7deg) scale(1.04); }
+      45% { transform: rotate(-6deg) scale(1.02); }
+      60% { transform: rotate(6deg) scale(1.02); }
+      75% { transform: rotate(-3deg) scale(1); }
+      100% { transform: rotate(0deg) scale(1); }
+    }
+
+    .gift-3d-wrapper.shake { animation: giftShake 0.45s ease; }
+
+    .gift-instruction {
+      font-size: 1.5rem;
+      color: #5c4f42;
+      background: #fff9eb;
+      border: 3px solid #6b5b4b;
+      padding: 6px 18px;
+      box-shadow: 0 4px 0 #6b5b4b;
+    }
+
+    .gift-result {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      animation: popIn 0.4s ease;
+    }
+
+    .bouquet-stage {
+      background: #fff;
+      border: 4px solid #6b5b4b;
+      padding: 10px 24px;
+      border-radius: 50px;
+      box-shadow: inset 0 -3px 0 #ede6d6, 0 5px 0 #6b5b4b;
+    }
+
+    .bouquet-img {
+      font-size: 3.6rem;
+      animation: bounce 0.9s infinite alternate;
+      display: inline-block;
+    }
+
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-7px); }
+    }
+
+    .wish-card {
+      background: #fff5f9;
+      border: 4px solid #6b5b4b;
+      padding: 16px 20px;
+      box-shadow: inset 0 3px 0 #ffffff, 0 6px 0 #6b5b4b;
+      max-width: 660px;
+    }
+
+    .wish-card h2 {
+      font-family: 'Press Start 2P', 'VT323', monospace;
+      font-size: 1.05rem;
+      line-height: 1.5;
+      color: #f28482;
+      margin-bottom: 8px;
+      text-shadow: 2px 2px 0 #6b5b4b;
+    }
+
+    .wish-card p {
+      font-size: 1.45rem;
+      color: #5c4f42;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 680px) {
+      .text-3d-title { font-size: 1.15rem; }
+      .ribbon-banner { font-size: 1.15rem; padding: 3px 14px; }
+      .menu-list { grid-template-columns: 1fr; gap: 12px; }
+      .options-grid { grid-template-columns: 1fr; }
+      .puzzle-board { width: 260px; height: 260px; }
+      .puzzle-piece { background-size: 260px 260px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nền Flappy Bird 3D động -->
+  <canvas id="bgCanvas"></canvas>
+
+  <!-- MÀN HÌNH MỞ ĐẦU (INTRO SCREEN) -->
+  <div id="introScreen" class="screen active">
+    <span class="corner-pin pin-tl"></span><span class="corner-pin pin-tr"></span>
+    <span class="corner-pin pin-bl"></span><span class="corner-pin pin-br"></span>
+
+    <div class="intro-container">
+      <div class="intro-badge">CHÀO MỪNG NGÀY 20/11</div>
+      <div class="intro-title">Phần mục trò chơi</div>
+      <div class="intro-subtitle">Góc kỷ niệm đặc biệt tri ân thầy cô của tập thể lớp 8C (A9-XT)</div>
+      <button class="btn-start" onclick="playSound('win'); goToMenu()">BẮT ĐẦU KHÁM PHÁ ▶</button>
+    </div>
+  </div>
+
+  <!-- MÀN HÌNH MENU CHÍNH -->
+  <div id="menuScreen" class="screen">
+    <span class="corner-pin pin-tl"></span><span class="corner-pin pin-tr"></span>
+    <span class="corner-pin pin-bl"></span><span class="corner-pin pin-br"></span>
+
+    <div class="title-board">
+      <div class="text-3d-title">Phần mục trò chơi</div>
+      <div class="ribbon-banner">Tập làm san 20/11 • LỚP 8C (A9-XT)</div>
+    </div>
+    
+    <div class="menu-list">
+      <div class="quest-item q-green" onclick="playSound('click'); openGame('quizScreen')">
+        <div class="quest-num">01</div>
+        <div class="quest-info">
+          <div class="quest-title">THỬ THÁCH GIẢI ĐỐ</div>
+          <div class="quest-desc">Trả lời các câu đố vui học đường</div>
+        </div>
+      </div>
+
+      <div class="quest-item q-blue" onclick="playSound('click'); openGame('memoryScreen')">
+        <div class="quest-num">02</div>
+        <div class="quest-info">
+          <div class="quest-title">LẬT THẺ KÝ ỨC</div>
+          <div class="quest-desc">Tìm 4 cặp hình ảnh của lớp 8C</div>
+        </div>
+      </div>
+
+      <div class="quest-item q-purple" onclick="playSound('click'); openGame('puzzleScreen')">
+        <div class="quest-num">03</div>
+        <div class="quest-info">
+          <div class="quest-title">GHÉP HÌNH THANH XUÂN</div>
+          <div class="quest-desc">Hoàn thiện bức ảnh cô</div>
+        </div>
+      </div>
+
+      <div class="quest-item q-orange" onclick="playSound('click'); openGame('platformerScreen')">
+        <div class="quest-num">04</div>
+        <div class="quest-info">
+          <div class="quest-title">MÓN QUÀ TRI ÂN</div>
+          <div class="quest-desc">Mở hộp quà 3D tặng thầy, cô 20/11</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MỤC 1: GIẢI ĐỐ -->
+  <div id="quizScreen" class="screen">
+    <span class="corner-pin pin-tl"></span><span class="corner-pin pin-tr"></span>
+    <span class="corner-pin pin-bl"></span><span class="corner-pin pin-br"></span>
+    <div class="top-bar">
+      <button class="btn-back" onclick="playSound('click'); goHome()">← Menu chính</button>
+      <div class="status-badge" id="quizProgress">Câu 1 / 5</div>
+    </div>
+    <div class="quiz-box" id="quizQuestion">Đang tải câu hỏi...</div>
+    <div class="options-grid" id="quizOptions"></div>
+  </div>
+
+  <!-- MỤC 2: LẬT THẺ BÀI (8 LÁ) -->
+  <div id="memoryScreen" class="screen">
+    <span class="corner-pin pin-tl"></span><span class="corner-pin pin-tr"></span>
+    <span class="corner-pin pin-bl"></span><span class="corner-pin pin-br"></span>
+    <div class="top-bar">
+      <button class="btn-back" onclick="playSound('click'); goHome()">← Menu chính</button>
+      <div class="status-badge" id="memoryScore">Đã tìm: 0 / 4 cặp</div>
+      <button class="btn-back" style="background:#a8df8e" onclick="playSound('click'); initMemoryGame()">Chơi lại</button>
+    </div>
+    <div class="memory-grid" id="memoryGrid"></div>
+  </div>
+
+  <!-- MỤC 3: GHÉP MẢNH GHÉP -->
+  <div id="puzzleScreen" class="screen">
+    <span class="corner-pin pin-tl"></span><span class="corner-pin pin-tr"></span>
+    <span class="corner-pin pin-bl"></span><span class="corner-pin pin-br"></span>
+    <div class="top-bar">
+      <button class="btn-back" onclick="playSound('click'); goHome()">← Menu chính</button>
+      <div class="status-badge" id="puzzleStatus">Bấm 2 mảnh để đổi chỗ</div>
+      <button class="btn-back" style="background:#a8df8e" onclick="playSound('click'); initPuzzle()">Xáo trộn</button>
+    </div>
+    <div class="puzzle-container">
+      <div class="puzzle-board" id="puzzleBoard"></div>
+    </div>
+  </div>
+
+  <!-- MỤC 4: HỘP QUÀ 3D KHỐI LẬP PHƯƠNG -->
+  <div id="platformerScreen" class="screen">
+    <span class="corner-pin pin-tl"></span><span class="corner-pin pin-tr"></span>
+    <span class="corner-pin pin-bl"></span><span class="corner-pin pin-br"></span>
+    <div class="top-bar">
+      <button class="btn-back" onclick="playSound('click'); goHome()">← Menu chính</button>
+      <div class="status-badge" id="giftStatus">Hộp quà bất ngờ (0/3)</div>
+      <button class="btn-back" style="background:#a8df8e" onclick="playSound('click'); initGiftBox()">Đóng lại</button>
+    </div>
+
+    <div class="gift-container">
+      <div id="giftBox" class="gift-3d-wrapper" onclick="clickGiftBox()">
+        <span class="gift-sparkle sp-1">✨</span>
+        <span class="gift-sparkle sp-2">✨</span>
+        <div class="gift-bow">
+          <div class="bow-loop-left"></div>
+          <div class="bow-knot"></div>
+          <div class="bow-loop-right"></div>
+        </div>
+        <div class="gift-lid" id="giftLid">
+          <div class="gift-lid-ribbon"></div>
+        </div>
+        <div class="gift-body">
+          <div class="gift-body-ribbon"></div>
+        </div>
+        <div class="gift-shadow"></div>
+      </div>
+
+      <div id="giftHint" class="gift-instruction">Hãy chạm vào hộp quà 3 lần để mở nhé!</div>
+
+      <div id="giftResult" class="gift-result">
+        <div class="bouquet-stage">
+          <div class="bouquet-img">    </div>
+        </div>
+        <div class="wish-card">
+          <h2> CHÚC MỪNG NGÀY NHÀ GIÁO VIỆT NAM 20/11! </h2>
+          <p>Nhân ngày Nhà giáo Việt Nam 20/11, tập thể lớp 8C (A9-XT) xin gửi lời tri ân sâu sắc và chân thành nhất đến Ban Giám hiệu cùng toàn thể các thầy cô giáo. Kính chúc các thầy cô luôn dồi dào sức khỏe, tràn đầy nhiệt huyết và gặt hái được nhiều thành công hơn nữa trong sự nghiệp trồng người cao quý!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* =========================================================================
+       HỆ THỐNG ÂM THANH RETRO (WEB AUDIO API)
+       ========================================================================= */
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    function playSound(type) {
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      const osc = audioCtx.createOscillator();
+      const gainNode = audioCtx.createGain();
+      osc.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
+
+      let now = audioCtx.currentTime;
+
+      if (type === 'click') {
+        osc.type = 'square';
+        osc.frequency.setValueAtTime(440, now);
+        osc.frequency.exponentialRampToValueAtTime(880, now + 0.08);
+        gainNode.gain.setValueAtTime(0.12, now);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.08);
+        osc.start(now);
+        osc.stop(now + 0.08);
+      } else if (type === 'correct') {
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(523.25, now);
+        osc.frequency.setValueAtTime(659.25, now + 0.1);
+        osc.frequency.setValueAtTime(783.99, now + 0.2);
+        gainNode.gain.setValueAtTime(0.15, now);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.35);
+        osc.start(now);
+        osc.stop(now + 0.35);
+      } else if (type === 'wrong') {
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(220, now);
+        osc.frequency.setValueAtTime(150, now + 0.15);
+        gainNode.gain.setValueAtTime(0.15, now);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+        osc.start(now);
+        osc.stop(now + 0.3);
+      } else if (type === 'win') {
+        const notes = [523.25, 659.25, 783.99, 1046.50];
+        notes.forEach((freq, idx) => {
+          let o = audioCtx.createOscillator();
+          let g = audioCtx.createGain();
+          o.connect(g);
+          g.connect(audioCtx.destination);
+          o.type = 'square';
+          o.frequency.setValueAtTime(freq, now + idx * 0.1);
+          g.gain.setValueAtTime(0.12, now + idx * 0.1);
+          g.gain.exponentialRampToValueAtTime(0.01, now + idx * 0.1 + 0.15);
+          o.start(now + idx * 0.1);
+          o.stop(now + idx * 0.1 + 0.15);
+        });
+      }
+    }
+
+    /* =========================================================================
+       CẤU HÌNH DỮ LIỆU VÀ LINK ẢNH (BẠN CÓ THỂ THAY LINK ẢNH CỦA LỚP VÀO ĐÂY)
+       ========================================================================= */
+    const CONFIG = {
+      QUIZ_DATA: [
+        {
+          question: "Câu 1: Cái gì không chân, không tay, mà hay chạy khắp đó đây trong phòng? Lúc giảng bài, lúc mùa đông, quạt cho cô giảng mát lòng chúng em?",
+          options: ["Chiếc quạt trần", "Cây chổi lau bảng", "Cuốn sổ đầu bài", "Chiếc đồng hồ"],
+          answer: 0
+        },
+        {
+          question: "Câu 2: Càng học, càng viết, càng bôi, mà sao trắng phau, chẳng ai chê cười? Bảng đen áo phấn một thời, giúp em khôn lớn nên người hôm nay?",
+          options: ["Tờ giấy kiểm tra", "Viên phấn trắng", "Cục tẩy", "Thước kẻ"],
+          answer: 1
+        },
+        {
+          question: "Câu 3: Tác giả Nguyễn Du đã viết kiệt tác 'Truyện Kiều' bằng thể thơ gì?",
+          options: ["Thất ngôn bát cú", "Song thất lục bát", "Thể thơ Lục bát", "Thơ tự do"],
+          answer: 2
+        },
+        {
+          question: "Câu 4: Ngày Nhà giáo Việt Nam 20/11 hàng năm bắt nguồn từ sự kiện lịch quan trọng nào trên thế giới?",
+          options: ["Thành lập tổ chức FISE", "Ký hiệp định Genève", "Ngày thành lập Liên Hợp Quốc", "Đại hội UNESCO thế giới"],
+          answer: 0
+        },
+        {
+          question: "Câu 5: Tập thể lớp 8C (A9-XT thân yêu của chúng ta) có tổng cộng bao nhiêu thành viên cùng gắn kết?",
+          options: ["48 thành viên", "50 thành viên", "52 thành viên", "55 thành viên"],
+          answer: 2
+        }
+      ],
+
+      // HÃY THAY 4 LINK ẢNH DƯỚI ĐÂY BẰNG LINK ẢNH KỶ NIỆM CỦA LỚP 8C (MỤC 2)
+      MEMORY_IMAGES: [
+        "https://i.postimg.cc/XY6HGHT2/1794661340634-6819000675830494732-g2844230480847853269-c88e8c40eb6e6e7b07961eec8f664035.jpg",
+        "https://i.postimg.cc/1zqDGswp/1794661340690-6819000675830494732-g2844230480847853269-9df8991bc94aad044c5387f703c8fd59.jpg",
+        "https://i.postimg.cc/Kck44J70/1794661340744-6819000675830494732-g2844230480847853269-319c0f500b1cf266a19a304002ae19ab.jpg",
+        "https://i.postimg.cc/8Pw8GVFZ/1794541380054-9070325128311346253-g8674601830496277455-7d3a399fe4d4c23051674d103e28e7d2.jpg"
+      ],
+
+      // HÃY THAY LINK ẢNH DƯỚI ĐÂY BẰNG ẢNH TẬP THỂ LỚP ĐỂ GHÉP HÌNH (MỤC 3)
+      PUZZLE_IMAGE: "https://i.postimg.cc/y8vR4nCv/1794229885142-2657843383976021839-g2844230480847853269-ee87330e83714b524eee6c4b958d3c0c.jpg"
+    };
+
+    /* =========================================================================
+       NỀN FLAPPY BIRD 3D RETRO & CHIM ĐƯỢC THIẾT KẾ LẠI SẮC NÉT
+       ========================================================================= */
+    const bgCanvas = document.getElementById("bgCanvas");
+    const bgCtx = bgCanvas.getContext("2d");
+
+    function resizeBg() {
+      bgCanvas.width = window.innerWidth;
+      bgCanvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resizeBg);
+    resizeBg();
+
+    let birdY = bgCanvas.height * 0.4;
+    let birdVel = 0;
+    let pipes = [];
+    let frameCount = 0;
+
+    function drawPipe3D(x, topH, bottomY) {
+      bgCtx.fillStyle = "#8fd158";
+      bgCtx.strokeStyle = "#544738";
+      bgCtx.lineWidth = 3;
+
+      bgCtx.fillRect(x, 0, 64, topH - 24);
+      bgCtx.strokeRect(x, 0, 64, topH - 24);
+      bgCtx.fillStyle = "#b5e884";
+      bgCtx.fillRect(x + 4, 0, 10, topH - 24);
+      bgCtx.fillStyle = "#72b03f";
+      bgCtx.fillRect(x + 50, 0, 10, topH - 24);
+
+      bgCtx.fillStyle = "#8fd158";
+      bgCtx.fillRect(x - 4, topH - 24, 72, 24);
+      bgCtx.strokeRect(x - 4, topH - 24, 72, 24);
+      bgCtx.fillStyle = "#b5e884";
+      bgCtx.fillRect(x, topH - 24, 12, 24);
+
+      bgCtx.fillStyle = "#8fd158";
+      bgCtx.fillRect(x - 4, bottomY, 72, 24);
+      bgCtx.strokeRect(x - 4, bottomY, 72, 24);
+      bgCtx.fillStyle = "#b5e884";
+      bgCtx.fillRect(x, bottomY, 12, 24);
+
+      bgCtx.fillStyle = "#8fd158";
+      bgCtx.fillRect(x, bottomY + 24, 64, bgCanvas.height - bottomY - 50);
+      bgCtx.strokeRect(x, bottomY + 24, 64, bgCanvas.height - bottomY - 50);
+      bgCtx.fillStyle = "#b5e884";
+      bgCtx.fillRect(x + 4, bottomY + 24, 10, bgCanvas.height - bottomY - 50);
+      bgCtx.fillStyle = "#72b03f";
+      bgCtx.fillRect(x + 50, bottomY + 24, 10, bgCanvas.height - bottomY - 50);
+    }
+
+    function drawBgFlappy() {
+      bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+      bgCtx.fillStyle = "#98dce3";
+      bgCtx.fillRect(0, 0, bgCanvas.width, bgCanvas.height);
+
+      bgCtx.fillStyle = "#bceaf0";
+      for (let i = 0; i < bgCanvas.width + 100; i += 70) {
+        let h = 80 + (i % 5) * 25;
+        bgCtx.fillRect(i - (frameCount * 0.2) % 70, bgCanvas.height - 50 - h, 50, h);
+      }
+
+      bgCtx.fillStyle = "#ffffff";
+      for (let i = 0; i < 4; i++) {
+        let cx = ((i * 380 - frameCount * 0.5) % (bgCanvas.width + 200));
+        if (cx < -120) cx += bgCanvas.width + 200;
+        bgCtx.fillRect(cx, 120 + (i % 2) * 60, 100, 30);
+        bgCtx.fillRect(cx + 20, 105 + (i % 2) * 60, 60, 15);
+      }
+
+      if (frameCount % 160 === 0) {
+        let gap = 170;
+        let topH = 70 + Math.random() * (bgCanvas.height - gap - 190);
+        pipes.push({ x: bgCanvas.width, top: topH, bottom: topH + gap });
+      }
+
+      pipes.forEach((p, idx) => {
+        p.x -= 2;
+        drawPipe3D(p.x, p.top, p.bottom);
+        if (p.x < -80) pipes.splice(idx, 1);
+      });
+
+      let targetY = bgCanvas.height * 0.45;
+      if (pipes.length > 0 && pipes[0].x + 64 > 110) {
+        targetY = (pipes[0].top + pipes[0].bottom) / 2;
+      }
+      birdVel += 0.35;
+      if (birdY > targetY + 15) birdVel = -6;
+      birdY += birdVel;
+
+      let bx = 140;
+      let by = birdY;
+
+      bgCtx.fillStyle = "#f8c028";
+      bgCtx.strokeStyle = "#544738";
+      bgCtx.lineWidth = 3;
+      bgCtx.beginPath();
+      bgCtx.ellipse(bx, by, 24, 18, 0, 0, Math.PI * 2);
+      bgCtx.fill();
+      bgCtx.stroke();
+
+      bgCtx.fillStyle = "#fff4db";
+      bgCtx.beginPath();
+      bgCtx.ellipse(bx - 3, by + 5, 14, 10, -0.1, 0, Math.PI * 2);
+      bgCtx.fill();
+
+      bgCtx.fillStyle = "#e07a3f";
+      bgCtx.strokeStyle = "#544738";
+      bgCtx.lineWidth = 2.5;
+      bgCtx.beginPath();
+      bgCtx.ellipse(bx - 6, by + (Math.sin(frameCount * 0.2) > 0 ? 0 : 4), 10, 7, 0.2, 0, Math.PI * 2);
+      bgCtx.fill();
+      bgCtx.stroke();
+
+      bgCtx.fillStyle = "#ffffff";
+      bgCtx.strokeStyle = "#544738";
+      bgCtx.lineWidth = 2.5;
+      bgCtx.beginPath();
+      bgCtx.arc(bx + 9, by - 6, 7.5, 0, Math.PI * 2);
+      bgCtx.fill();
+      bgCtx.stroke();
+
+      bgCtx.fillStyle = "#2c221e";
+      bgCtx.beginPath();
+      bgCtx.arc(bx + 11, by - 6, 3, 0, Math.PI * 2);
+      bgCtx.fill();
+
+      bgCtx.fillStyle = "#f46a36";
+      bgCtx.strokeStyle = "#544738";
+      bgCtx.lineWidth = 3;
+      bgCtx.beginPath();
+      bgCtx.moveTo(bx + 16, by - 4);
+      bgCtx.lineTo(bx + 30, by + 1);
+      bgCtx.lineTo(bx + 16, by + 7);
+      bgCtx.closePath();
+      bgCtx.fill();
+      bgCtx.stroke();
+
+      bgCtx.strokeStyle = "#544738";
+      bgCtx.lineWidth = 2;
+      bgCtx.beginPath();
+      bgCtx.moveTo(bx + 16, by + 2);
+      bgCtx.lineTo(bx + 27, by + 2);
+      bgCtx.stroke();
+
+      bgCtx.fillStyle = "#ede6b9";
+      bgCtx.fillRect(0, bgCanvas.height - 50, bgCanvas.width, 50);
+      bgCtx.fillStyle = "#8fd158";
+      bgCtx.fillRect(0, bgCanvas.height - 50, bgCanvas.width, 16);
+      bgCtx.strokeStyle = "#544738";
+      bgCtx.lineWidth = 3;
+      bgCtx.strokeRect(-5, bgCanvas.height - 50, bgCanvas.width + 10, 16);
+
+      frameCount++;
+      requestAnimationFrame(drawBgFlappy);
+    }
+    drawBgFlappy();
+
+    /* =========================================================================
+       ĐIỀU HƯỚNG MÀN HÌNH
+       ========================================================================= */
+    function goToMenu() {
+      document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+      document.getElementById("menuScreen").classList.add("active");
+    }
+
+    function openGame(screenId) {
+      document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+      document.getElementById(screenId).classList.add("active");
+
+      if (screenId === "quizScreen") initQuiz();
+      if (screenId === "memoryScreen") initMemoryGame();
+      if (screenId === "puzzleScreen") initPuzzle();
+      if (screenId === "platformerScreen") initGiftBox();
+    }
+
+    function goHome() {
+      document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+      document.getElementById("menuScreen").classList.add("active");
+    }
+
+    /* =========================================================================
+       MỤC 1: TRÒ CHƠI GIẢI ĐỐ (5 CÂU HỎI)
+       ========================================================================= */
+    let currentQuizIdx = 0;
+    function initQuiz() { currentQuizIdx = 0; renderQuiz(); }
+    function renderQuiz() {
+      const qData = CONFIG.QUIZ_DATA[currentQuizIdx];
+      document.getElementById("quizProgress").innerText = `Câu ${currentQuizIdx + 1} / ${CONFIG.QUIZ_DATA.length}`;
+      document.getElementById("quizQuestion").innerText = qData.question;
+      const optContainer = document.getElementById("quizOptions");
+      optContainer.innerHTML = "";
+      qData.options.forEach((opt, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "option-btn";
+        btn.innerText = opt;
+        btn.onclick = () => {
+          playSound('click');
+          checkQuizAnswer(btn, idx === qData.answer);
+        };
+        optContainer.appendChild(btn);
+      });
+    }
+    function checkQuizAnswer(btn, isCorrect) {
+      if (isCorrect) {
+        playSound('correct');
+        btn.classList.add("correct");
+        setTimeout(() => {
+          currentQuizIdx++;
+          if (currentQuizIdx < CONFIG.QUIZ_DATA.length) renderQuiz();
+          else {
+            playSound('win');
+            document.getElementById("quizQuestion").innerHTML = "🎉 XUẤT SẮC! BẠN ĐÃ GIẢI ĐÚNG TOÀN BỘ CÂU ĐỐ CỦA LỚP 8C!";
+            document.getElementById("quizOptions").innerHTML = "";
+          }
+        }, 700);
+      } else {
+        playSound('wrong');
+        btn.classList.add("wrong");
+        setTimeout(() => btn.classList.remove("wrong"), 500);
+      }
+    }
+
+    /* =========================================================================
+       MỤC 2: LẬT THẺ BÀI (8 LÁ)
+       ========================================================================= */
+    let flippedCards = [], matchedPairs = 0, lockBoard = false;
+    function initMemoryGame() {
+      matchedPairs = 0; flippedCards = []; lockBoard = false;
+      document.getElementById("memoryScore").innerText = "Đã tìm: 0 / 4 cặp";
+      let cardsData = [...CONFIG.MEMORY_IMAGES, ...CONFIG.MEMORY_IMAGES]
+        .map((img, i) => ({ id: i % 4, img }))
+        .sort(() => Math.random() - 0.5);
+      const grid = document.getElementById("memoryGrid");
+      grid.innerHTML = "";
+      cardsData.forEach((item) => {
+        const card = document.createElement("div");
+        card.className = "mem-card";
+        card.dataset.id = item.id;
+        card.innerHTML = `<div class="mem-inner"><div class="mem-front">8C</div><div class="mem-back"><img src="${item.img}" /></div></div>`;
+        card.onclick = () => {
+          playSound('click');
+          flipCard(card);
+        };
+        grid.appendChild(card);
+      });
+    }
+    function flipCard(card) {
+      if (lockBoard || card.classList.contains("flipped")) return;
+      card.classList.add("flipped");
+      flippedCards.push(card);
+      if (flippedCards.length === 2) {
+        lockBoard = true;
+        const [c1, c2] = flippedCards;
+        if (c1.dataset.id === c2.dataset.id) {
+          playSound('correct');
+          matchedPairs++;
+          document.getElementById("memoryScore").innerText = `Đã tìm: ${matchedPairs} / 4 cặp`;
+          flippedCards = []; lockBoard = false;
+          if (matchedPairs === 4) {
+            setTimeout(() => playSound('win'), 200);
+          }
+        } else {
+          playSound('wrong');
+          setTimeout(() => {
+            c1.classList.remove("flipped");
+            c2.classList.remove("flipped");
+            flippedCards = [];
+            lockBoard = false;
+          }, 750);
+        }
+      }
+    }
+
+    /* =========================================================================
+       MỤC 3: GHÉP MẢNH GHÉP (3x3)
+       ========================================================================= */
+    let puzzleOrder = [], selectedPieceIdx = null;
+    function initPuzzle() {
+      selectedPieceIdx = null;
+      document.getElementById("puzzleStatus").innerText = "Bấm 2 mảnh để đổi chỗ";
+      puzzleOrder = [0, 1, 2, 3, 4, 5, 6, 7, 8].sort(() => Math.random() - 0.5);
+      if (puzzleOrder.every((v, i) => v === i)) puzzleOrder.reverse();
+      renderPuzzle();
+    }
+    function renderPuzzle() {
+      const board = document.getElementById("puzzleBoard");
+      board.innerHTML = "";
+      const size = board.clientWidth || 320;
+      const cell = size / 3;
+      puzzleOrder.forEach((tileIndex, posIndex) => {
+        const piece = document.createElement("div");
+        piece.className = "puzzle-piece";
+        if (selectedPieceIdx === posIndex) piece.classList.add("selected");
+        let r = Math.floor(tileIndex / 3), c = tileIndex % 3;
+        piece.style.backgroundImage = `url('${CONFIG.PUZZLE_IMAGE}')`;
+        piece.style.backgroundSize = `${size}px ${size}px`;
+        piece.style.backgroundPosition = `-${c * cell}px -${r * cell}px`;
+        piece.onclick = () => {
+          playSound('click');
+          if (selectedPieceIdx === null) { selectedPieceIdx = posIndex; renderPuzzle(); }
+          else {
+            let temp = puzzleOrder[selectedPieceIdx];
+            puzzleOrder[selectedPieceIdx] = puzzleOrder[posIndex];
+            puzzleOrder[posIndex] = temp;
+            selectedPieceIdx = null; renderPuzzle();
+            if (puzzleOrder.every((v, i) => v === i)) {
+              playSound('win');
+              document.getElementById("puzzleStatus").innerText = "🎉 Hoàn thành bức ảnh cô GVCN!";
+            }
+          }
+        };
+        board.appendChild(piece);
+      });
+    }
+
+    /* =========================================================================
+       MỤC 4: HỘP QUÀ 3D TƯƠNG TÁC 3 LẦN ẤN & HIỆU ỨNG RUNG
+       ========================================================================= */
+    let giftClicks = 0;
+
+    function initGiftBox() {
+      giftClicks = 0;
+      document.getElementById("giftStatus").innerText = "Hộp quà bất ngờ (0/3)";
+      document.getElementById("giftBox").style.display = "flex";
+      document.getElementById("giftLid").style.transform = "translateY(0) rotate(0deg)";
+      document.getElementById("giftHint").style.display = "block";
+      document.getElementById("giftHint").innerText = "Hãy chạm vào hộp quà 3 lần để mở nhé!";
+      document.getElementById("giftResult").style.display = "none";
+    }
+
+    function clickGiftBox() {
+      giftClicks++;
+      const box = document.getElementById("giftBox");
+      const lid = document.getElementById("giftLid");
+      
+      playSound('click');
+      box.classList.remove("shake");
+      void box.offsetWidth;
+      box.classList.add("shake");
+
+      if (giftClicks < 3) {
+        document.getElementById("giftStatus").innerText = `Hộp quà bất ngờ (${giftClicks}/3)`;
+        document.getElementById("giftHint").innerText = `Hộp quà đang hé mở! Chạm thêm ${3 - giftClicks} lần nữa!`;
+        lid.style.transform = `translateY(-${giftClicks * 5}px) rotate(${giftClicks % 2 === 0 ? 3 : -3}deg)`;
+      } else {
+        playSound('win');
+        document.getElementById("giftStatus").innerText = "Đã mở quà thành công! 💐";
+        lid.style.transform = "translateY(-35px) rotate(-18deg)";
+        setTimeout(() => {
+          box.style.display = "none";
+          document.getElementById("giftHint").style.display = "none";
+          document.getElementById("giftResult").style.display = "flex";
+        }, 320);
+      }
+    }
+  </script>
+</body>
+</html>
