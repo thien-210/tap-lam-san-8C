@@ -52,7 +52,7 @@
         inset -4px -4px 0 #ebe3ce,
         0 10px 0 #6b5b4b,
         0 18px 28px rgba(74, 62, 50, 0.25);
-      padding: 28px 24px 26px;
+      padding: 24px 20px 22px;
       text-align: center;
       display: none;
       animation: popIn 0.2s steps(4);
@@ -85,15 +85,15 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 20px 0;
-      gap: 22px;
+      padding: 15px 0;
+      gap: 18px;
     }
 
     .intro-badge {
       background: #dff3f5;
       border: 4px solid #6b5b4b;
-      padding: 10px 24px;
-      font-size: 1.45rem;
+      padding: 8px 20px;
+      font-size: 1.35rem;
       color: #4f6d7a;
       font-weight: bold;
       box-shadow: inset 0 3px 0 #ffffff, 0 4px 0 #6b5b4b;
@@ -101,7 +101,7 @@
 
     .intro-title {
       font-family: 'Press Start 2P', 'VT323', monospace;
-      font-size: 2.1rem;
+      font-size: 1.8rem;
       color: #ffcf56;
       line-height: 1.45;
       text-transform: uppercase;
@@ -112,11 +112,11 @@
         0 -3px 0 #6b5b4b,
         0 6px 0 #e0a836,
         0 10px 0 #6b5b4b;
-      margin: 10px 0;
+      margin: 8px 0;
     }
 
     .intro-subtitle {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       color: #827363;
       max-width: 600px;
       line-height: 1.35;
@@ -126,8 +126,8 @@
       background: #a8df8e;
       color: #ffffff;
       font-family: 'Press Start 2P', 'VT323', monospace;
-      font-size: 1.4rem;
-      padding: 16px 36px;
+      font-size: 1.3rem;
+      padding: 14px 32px;
       border: 4px solid #6b5b4b;
       cursor: pointer;
       box-shadow:
@@ -136,7 +136,7 @@
         0 7px 0 #6b5b4b;
       text-shadow: 2px 2px 0 #6b5b4b;
       animation: pulseBlink 1.2s infinite alternate;
-      margin-top: 10px;
+      margin-top: 8px;
     }
 
     .btn-start:hover { filter: brightness(1.05); }
@@ -151,8 +151,8 @@
     .title-board {
       background: #dff3f5;
       border: 4px solid #6b5b4b;
-      padding: 16px 14px 22px;
-      margin-bottom: 26px;
+      padding: 12px 14px 20px;
+      margin-bottom: 20px;
       position: relative;
       box-shadow:
         inset 4px 4px 0 #f4fbfc,
@@ -162,7 +162,7 @@
 
     .text-3d-title {
       font-family: 'Press Start 2P', 'VT323', monospace;
-      font-size: 1.7rem;
+      font-size: 1.5rem;
       color: #ffcf56;
       letter-spacing: 2px;
       text-transform: uppercase;
@@ -178,13 +178,13 @@
 
     .ribbon-banner {
       position: absolute;
-      bottom: -17px;
+      bottom: -15px;
       left: 50%;
       transform: translateX(-50%);
       background: #f59b8c;
       color: #ffffff;
-      font-size: 1.38rem;
-      padding: 3px 22px;
+      font-size: 1.3rem;
+      padding: 2px 18px;
       border: 3px solid #6b5b4b;
       white-space: nowrap;
       box-shadow:
@@ -194,12 +194,15 @@
       text-shadow: 2px 2px 0 #6b5b4b;
     }
 
-    /* ================= MENU 4 MỤC ================= */
+    /* ================= MENU 6 MỤC ================= */
     .menu-list {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      margin-top: 8px;
+      gap: 12px;
+      margin-top: 6px;
+      max-height: 380px;
+      overflow-y: auto;
+      padding-right: 4px;
     }
 
     .quest-item {
@@ -209,14 +212,14 @@
       border: 4px solid #6b5b4b;
       cursor: pointer;
       text-align: left;
-      box-shadow: inset -3px -3px 0 #ede6d6, 0 6px 0 #6b5b4b;
+      box-shadow: inset -3px -3px 0 #ede6d6, 0 5px 0 #6b5b4b;
       transition: transform 0.05s, box-shadow 0.05s, filter 0.1s;
     }
 
     .quest-item:hover {
       filter: brightness(1.02);
       transform: translateY(-2px);
-      box-shadow: inset -3px -3px 0 #ede6d6, 0 8px 0 #6b5b4b;
+      box-shadow: inset -3px -3px 0 #ede6d6, 0 7px 0 #6b5b4b;
     }
 
     .quest-item:active {
@@ -225,41 +228,43 @@
     }
 
     .quest-num {
-      width: 64px;
+      width: 58px;
       display: flex;
       justify-content: center;
       align-items: center;
       font-family: 'Press Start 2P', monospace;
-      font-size: 1.35rem;
+      font-size: 1.2rem;
       color: #ffffff;
       border-right: 4px solid #6b5b4b;
       text-shadow: 2px 2px 0 #6b5b4b;
       flex-shrink: 0;
     }
 
-    .q-green .quest-num { background: #a8df8e; box-shadow: inset 3px 3px 0 #ccf2ba, inset -3px -3px 0 #88c26d; }
-    .q-blue .quest-num { background: #9bd4e4; box-shadow: inset 3px 3px 0 #c7ecf7, inset -3px -3px 0 #7bb7c7; }
-    .q-purple .quest-num { background: #cbb2fe; box-shadow: inset 3px 3px 0 #e3d4ff, inset -3px -3px 0 #ab91e0; }
-    .q-orange .quest-num { background: #ffbe88; box-shadow: inset 3px 3px 0 #ffdcbf, inset -3px -3px 0 #e09f69; }
+    .q-1 .quest-num { background: #a8df8e; box-shadow: inset 3px 3px 0 #ccf2ba, inset -3px -3px 0 #88c26d; }
+    .q-2 .quest-num { background: #9bd4e4; box-shadow: inset 3px 3px 0 #c7ecf7, inset -3px -3px 0 #7bb7c7; }
+    .q-3 .quest-num { background: #cbb2fe; box-shadow: inset 3px 3px 0 #e3d4ff, inset -3px -3px 0 #ab91e0; }
+    .q-4 .quest-num { background: #f59b8c; box-shadow: inset 3px 3px 0 #ffc2b8, inset -3px -3px 0 #d97a6a; }
+    .q-5 .quest-num { background: #ffbe88; box-shadow: inset 3px 3px 0 #ffdcbf, inset -3px -3px 0 #e09f69; }
+    .q-6 .quest-num { background: #f4d06f; box-shadow: inset 3px 3px 0 #fae598, inset -3px -3px 0 #d1a83e; }
 
     .quest-info {
-      padding: 12px 14px;
+      padding: 10px 12px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 4px;
+      gap: 3px;
       width: 100%;
     }
 
     .quest-title {
       font-family: 'Press Start 2P', 'VT323', monospace;
-      font-size: 0.88rem;
+      font-size: 0.8rem;
       color: #4f6d7a;
-      line-height: 1.35;
+      line-height: 1.3;
     }
 
     .quest-desc {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       color: #827363;
       line-height: 1.2;
     }
@@ -269,7 +274,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       padding: 8px 12px;
       background: #f2ece1;
       border: 4px solid #6b5b4b;
@@ -280,8 +285,8 @@
       background: #f59b8c;
       color: white;
       border: 3px solid #6b5b4b;
-      padding: 5px 14px;
-      font-size: 1.35rem;
+      padding: 4px 12px;
+      font-size: 1.3rem;
       cursor: pointer;
       box-shadow: inset 0 3px 0 #ffc2b8, 0 4px 0 #6b5b4b;
       text-shadow: 2px 2px 0 #6b5b4b;
@@ -293,8 +298,8 @@
       background: #dff3f5;
       color: #4f6d7a;
       border: 3px solid #6b5b4b;
-      padding: 4px 16px;
-      font-size: 1.4rem;
+      padding: 4px 14px;
+      font-size: 1.3rem;
       font-weight: bold;
       box-shadow: inset 0 3px 0 #ffffff, 0 4px 0 #6b5b4b;
     }
@@ -303,42 +308,42 @@
     .quiz-box {
       background: #e9f6f8;
       border: 4px solid #6b5b4b;
-      padding: 20px;
-      margin-bottom: 16px;
-      font-size: 1.65rem;
+      padding: 16px;
+      margin-bottom: 14px;
+      font-size: 1.55rem;
       color: #4a5c66;
-      line-height: 1.45;
-      box-shadow: inset 0 4px 0 #ffffff, 0 5px 0 #6b5b4b;
+      line-height: 1.4;
+      box-shadow: inset 0 4px 0 #ffffff, 0 4px 0 #6b5b4b;
     }
 
     .options-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 10px;
     }
 
     .option-btn {
       background: #ffffff;
       border: 4px solid #6b5b4b;
-      padding: 13px;
-      font-size: 1.55rem;
+      padding: 11px;
+      font-size: 1.45rem;
       color: #5c4f42;
       font-weight: bold;
       cursor: pointer;
-      box-shadow: inset -3px -3px 0 #ede6d6, 0 5px 0 #6b5b4b;
+      box-shadow: inset -3px -3px 0 #ede6d6, 0 4px 0 #6b5b4b;
     }
 
     .option-btn:hover { background: #fff9eb; }
     .option-btn:active { transform: translateY(4px); box-shadow: 0 1px 0 #6b5b4b; }
-    .option-btn.correct { background: #a8df8e; color: #fff; text-shadow: 2px 2px 0 #6b5b4b; box-shadow: inset 0 3px 0 #ccf2ba, 0 5px 0 #6b5b4b; }
-    .option-btn.wrong { background: #f59b8c; color: #fff; text-shadow: 2px 2px 0 #6b5b4b; box-shadow: inset 0 3px 0 #ffc2b8, 0 5px 0 #6b5b4b; }
+    .option-btn.correct { background: #a8df8e; color: #fff; text-shadow: 2px 2px 0 #6b5b4b; box-shadow: inset 0 3px 0 #ccf2ba, 0 4px 0 #6b5b4b; }
+    .option-btn.wrong { background: #f59b8c; color: #fff; text-shadow: 2px 2px 0 #6b5b4b; box-shadow: inset 0 3px 0 #ffc2b8, 0 4px 0 #6b5b4b; }
 
     /* ================= MỤC 2: LẬT THẺ (8 LÁ) ================= */
     .memory-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      max-width: 540px;
+      gap: 10px;
+      max-width: 500px;
       margin: 0 auto;
     }
 
@@ -368,51 +373,163 @@
       justify-content: center;
       align-items: center;
       overflow: hidden;
-      box-shadow: 0 5px 0 #6b5b4b;
+      box-shadow: 0 4px 0 #6b5b4b;
     }
 
     .mem-front {
       background: #ffbe88;
       font-family: 'Press Start 2P', monospace;
       color: #ffffff;
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       text-shadow: 2px 2px 0 #6b5b4b;
-      box-shadow: inset 3px 3px 0 #ffdcbf, inset -3px -3px 0 #e09f69, 0 5px 0 #6b5b4b;
+      box-shadow: inset 3px 3px 0 #ffdcbf, inset -3px -3px 0 #e09f69, 0 4px 0 #6b5b4b;
     }
 
     .mem-back { background: #fff; transform: rotateY(180deg); }
     .mem-back img { width: 100%; height: 100%; object-fit: cover; }
 
     /* ================= MỤC 3: GHÉP HÌNH ================= */
-    .puzzle-container { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .puzzle-container { display: flex; flex-direction: column; align-items: center; gap: 10px; }
     .puzzle-board {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 4px;
-      width: 320px;
-      height: 320px;
+      width: 290px;
+      height: 290px;
       border: 5px solid #6b5b4b;
       background: #6b5b4b;
-      box-shadow: 0 7px 0 #6b5b4b;
+      box-shadow: 0 6px 0 #6b5b4b;
     }
-    .puzzle-piece { width: 100%; height: 100%; background-size: 320px 320px; cursor: pointer; }
+    .puzzle-piece { width: 100%; height: 100%; background-size: 290px 290px; cursor: pointer; }
     .puzzle-piece.selected { outline: 4px solid #ffcf56; z-index: 2; transform: scale(0.94); }
 
-    /* ================= MỤC 4: HỘP QUÀ 3D KHỐI LẬP PHƯƠNG ================= */
+    /* ================= MỤC 4: GAME XẾP 3 (MATCH-3 TỰ ĐỘNG BIẾN MẤT & ĐỔI MỚI) ================= */
+    .match3-board {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      max-width: 320px;
+      margin: 0 auto 12px;
+    }
+    .match3-cell {
+      aspect-ratio: 1/1;
+      background: #fff;
+      border: 3px solid #6b5b4b;
+      font-size: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: inset -2px -2px 0 #ede6d6, 0 4px 0 #6b5b4b;
+      transition: transform 0.1s, background 0.2s;
+    }
+    .match3-cell:hover { transform: scale(1.05); background: #fff9eb; }
+    .match3-cell.selected { outline: 3px solid #ffcf56; background: #ffe58f; }
+
+    /* ================= MỤC 5: SỔ LƯU BÚT 52 THÀNH VIÊN LỚP 8C ================= */
+    .classmates-box {
+      background: #e9f6f8;
+      border: 4px solid #6b5b4b;
+      padding: 12px;
+      max-width: 720px;
+      margin: 0 auto;
+      box-shadow: inset 0 3px 0 #ffffff, 0 4px 0 #6b5b4b;
+      text-align: left;
+    }
+    .classmates-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.8rem;
+      color: #4f6d7a;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .classmates-list {
+      list-style: none;
+      max-height: 220px;
+      overflow-y: auto;
+      padding-right: 6px;
+    }
+    .classmate-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fff;
+      border: 2px solid #6b5b4b;
+      padding: 5px 10px;
+      margin-bottom: 5px;
+      font-size: 1.25rem;
+      color: #5c4f42;
+    }
+    .classmate-name {
+      font-weight: bold;
+      color: #4f6d7a;
+      width: 35%;
+    }
+    .classmate-msg {
+      font-style: italic;
+      color: #726353;
+      width: 65%;
+      text-align: right;
+    }
+
+    /* ================= MỤC 6: GAME HỨNG HOA (CATCHER) ================= */
+    .catcher-area {
+      position: relative;
+      width: 100%;
+      height: 280px;
+      background: linear-gradient(180deg, #dff3f5 0%, #bce0e4 100%);
+      border: 4px solid #6b5b4b;
+      overflow: hidden;
+      box-shadow: inset 0 4px 0 #ffffff, 0 5px 0 #6b5b4b;
+      margin-bottom: 10px;
+      cursor: none;
+    }
+    .catcher-star {
+      position: absolute;
+      font-size: 1.2rem;
+      animation: twinkleStar 1.5s infinite alternate;
+      pointer-events: none;
+      opacity: 0.6;
+    }
+    @keyframes twinkleStar {
+      from { transform: scale(0.8); opacity: 0.4; }
+      to { transform: scale(1.2); opacity: 0.9; }
+    }
+    .falling-flower {
+      position: absolute;
+      font-size: 2.3rem;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      filter: drop-shadow(0 3px 2px rgba(0,0,0,0.15));
+    }
+    .basket-container {
+      position: absolute;
+      bottom: 6px;
+      transform: translateX(-50%);
+      pointer-events: none;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .basket-icon { font-size: 3rem; filter: drop-shadow(0 4px 3px rgba(0,0,0,0.2)); }
+    .basket-base { width: 50px; height: 6px; background: #6b5b4b; border-radius: 3px; margin-top: -4px; }
+
+    /* ================= MỤC 7: HỘP QUÀ 3D ================= */
     .gift-container {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 310px;
-      gap: 20px;
-      padding: 10px 0;
+      min-height: 280px;
+      gap: 16px;
+      padding: 5px 0;
     }
 
     .gift-3d-wrapper {
       position: relative;
-      width: 170px;
-      height: 175px;
+      width: 150px;
+      height: 155px;
       cursor: pointer;
       display: flex;
       flex-direction: column;
@@ -426,9 +543,9 @@
 
     .gift-shadow {
       position: absolute;
-      bottom: -10px;
-      width: 156px;
-      height: 22px;
+      bottom: -8px;
+      width: 136px;
+      height: 18px;
       background: rgba(107, 91, 75, 0.25);
       border-radius: 50%;
       z-index: 0;
@@ -436,44 +553,44 @@
 
     .gift-bow {
       position: relative;
-      width: 96px;
-      height: 34px;
+      width: 84px;
+      height: 30px;
       z-index: 4;
-      margin-bottom: -6px;
+      margin-bottom: -5px;
       display: flex;
       justify-content: center;
       align-items: flex-end;
     }
 
     .bow-loop-left, .bow-loop-right {
-      width: 44px;
-      height: 30px;
+      width: 38px;
+      height: 26px;
       background: linear-gradient(180deg, #ffe58f 0%, #ffcf56 100%);
-      border: 4px solid #6b5b4b;
-      box-shadow: inset 0 3px 0 #fff7d6;
+      border: 3px solid #6b5b4b;
+      box-shadow: inset 0 2px 0 #fff7d6;
     }
-    .bow-loop-left { border-radius: 20px 20px 4px 20px; transform: rotate(-14deg); margin-right: -6px; }
-    .bow-loop-right { border-radius: 20px 20px 20px 4px; transform: rotate(14deg); margin-left: -6px; }
+    .bow-loop-left { border-radius: 16px 16px 4px 16px; transform: rotate(-14deg); margin-right: -5px; }
+    .bow-loop-right { border-radius: 16px 16px 16px 4px; transform: rotate(14deg); margin-left: -5px; }
     .bow-knot {
       position: absolute;
       bottom: 0;
-      width: 24px;
-      height: 22px;
+      width: 20px;
+      height: 18px;
       background: #ffcf56;
-      border: 4px solid #6b5b4b;
-      border-radius: 6px;
+      border: 3px solid #6b5b4b;
+      border-radius: 5px;
       box-shadow: inset 0 2px 0 #fff7d6;
       z-index: 5;
     }
 
     .gift-lid {
       position: relative;
-      width: 164px;
-      height: 38px;
+      width: 144px;
+      height: 34px;
       background: linear-gradient(180deg, #ff998a 0%, #f07462 100%);
       border: 4px solid #6b5b4b;
-      border-radius: 8px;
-      box-shadow: inset 0 4px 0 #ffc7bf, inset 0 -4px 0 #cc5645, 0 5px 0 #6b5b4b;
+      border-radius: 6px;
+      box-shadow: inset 0 3px 0 #ffc7bf, inset 0 -3px 0 #cc5645, 0 4px 0 #6b5b4b;
       z-index: 3;
       display: flex;
       justify-content: center;
@@ -481,22 +598,22 @@
     }
 
     .gift-lid-ribbon {
-      width: 34px;
+      width: 30px;
       height: 100%;
       background: linear-gradient(180deg, #ffe58f 0%, #ffcf56 100%);
-      border-left: 4px solid #6b5b4b;
-      border-right: 4px solid #6b5b4b;
+      border-left: 3px solid #6b5b4b;
+      border-right: 3px solid #6b5b4b;
     }
 
     .gift-body {
       position: relative;
-      width: 144px;
-      height: 105px;
+      width: 128px;
+      height: 92px;
       margin-top: -2px;
       background: linear-gradient(90deg, #ffa699 0%, #f58271 72%, #d96452 72%, #d96452 100%);
       border: 4px solid #6b5b4b;
-      border-radius: 0 0 10px 10px;
-      box-shadow: inset 4px 0 0 #ffc7bf, inset 0 -6px 0 #bd4f3e, 0 8px 0 #6b5b4b;
+      border-radius: 0 0 8px 8px;
+      box-shadow: inset 3px 0 0 #ffc7bf, inset 0 -5px 0 #bd4f3e, 0 6px 0 #6b5b4b;
       z-index: 2;
       display: flex;
       justify-content: center;
@@ -504,22 +621,21 @@
     }
 
     .gift-body-ribbon {
-      width: 34px;
+      width: 30px;
       height: 100%;
       background: linear-gradient(180deg, #ffcf56 0%, #e8b02e 100%);
-      border-left: 4px solid #6b5b4b;
-      border-right: 4px solid #6b5b4b;
-      box-shadow: inset 0 4px 0 rgba(0,0,0,0.12);
+      border-left: 3px solid #6b5b4b;
+      border-right: 3px solid #6b5b4b;
     }
 
     .gift-sparkle {
       position: absolute;
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       animation: twinkle 1.2s infinite alternate;
       pointer-events: none;
     }
-    .sp-1 { top: 20px; left: -16px; }
-    .sp-2 { top: 65px; right: -18px; animation-delay: 0.4s; }
+    .sp-1 { top: 15px; left: -14px; }
+    .sp-2 { top: 55px; right: -14px; animation-delay: 0.4s; }
 
     @keyframes twinkle {
       from { transform: scale(0.8); opacity: 0.6; }
@@ -539,71 +655,71 @@
     .gift-3d-wrapper.shake { animation: giftShake 0.45s ease; }
 
     .gift-instruction {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       color: #5c4f42;
       background: #fff9eb;
       border: 3px solid #6b5b4b;
-      padding: 6px 18px;
-      box-shadow: 0 4px 0 #6b5b4b;
+      padding: 5px 16px;
+      box-shadow: 0 3px 0 #6b5b4b;
     }
 
     .gift-result {
       display: none;
       flex-direction: column;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       animation: popIn 0.4s ease;
     }
 
     .bouquet-stage {
       background: #fff;
       border: 4px solid #6b5b4b;
-      padding: 10px 24px;
-      border-radius: 50px;
-      box-shadow: inset 0 -3px 0 #ede6d6, 0 5px 0 #6b5b4b;
+      padding: 8px 20px;
+      border-radius: 40px;
+      box-shadow: inset 0 -3px 0 #ede6d6, 0 4px 0 #6b5b4b;
     }
 
     .bouquet-img {
-      font-size: 3.6rem;
+      font-size: 3.2rem;
       animation: bounce 0.9s infinite alternate;
       display: inline-block;
     }
 
     @keyframes bounce {
       from { transform: translateY(0); }
-      to { transform: translateY(-7px); }
+      to { transform: translateY(-6px); }
     }
 
     .wish-card {
       background: #fff5f9;
       border: 4px solid #6b5b4b;
-      padding: 16px 20px;
-      box-shadow: inset 0 3px 0 #ffffff, 0 6px 0 #6b5b4b;
-      max-width: 660px;
+      padding: 14px 18px;
+      box-shadow: inset 0 3px 0 #ffffff, 0 5px 0 #6b5b4b;
+      max-width: 620px;
     }
 
     .wish-card h2 {
       font-family: 'Press Start 2P', 'VT323', monospace;
-      font-size: 1.05rem;
-      line-height: 1.5;
+      font-size: 0.95rem;
+      line-height: 1.4;
       color: #f28482;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       text-shadow: 2px 2px 0 #6b5b4b;
     }
 
     .wish-card p {
-      font-size: 1.45rem;
+      font-size: 1.35rem;
       color: #5c4f42;
-      line-height: 1.4;
+      line-height: 1.35;
     }
 
     @media (max-width: 680px) {
-      .text-3d-title { font-size: 1.15rem; }
-      .ribbon-banner { font-size: 1.15rem; padding: 3px 14px; }
-      .menu-list { grid-template-columns: 1fr; gap: 12px; }
+      .text-3d-title { font-size: 1.1rem; }
+      .ribbon-banner { font-size: 1.1rem; padding: 2px 12px; }
+      .menu-list { grid-template-columns: 1fr; gap: 10px; }
       .options-grid { grid-template-columns: 1fr; }
-      .puzzle-board { width: 260px; height: 260px; }
-      .puzzle-piece { background-size: 260px 260px; }
+      .puzzle-board { width: 240px; height: 240px; }
+      .puzzle-piece { background-size: 240px 240px; }
     }
   </style>
 </head>
@@ -619,13 +735,13 @@
 
     <div class="intro-container">
       <div class="intro-badge">CHÀO MỪNG NGÀY 20/11</div>
-      <div class="intro-title">Phần mục trò chơi</div>
+      <div class="intro-title">THƯỚC PHIM THANH XUÂN</div>
       <div class="intro-subtitle">Góc kỷ niệm đặc biệt tri ân thầy cô của tập thể lớp 8C (A9-XT)</div>
       <button class="btn-start" onclick="playSound('win'); goToMenu()">BẮT ĐẦU KHÁM PHÁ ▶</button>
     </div>
   </div>
 
-  <!-- MÀN HÌNH MENU CHÍNH -->
+  <!-- MÀN HÌNH MENU CHÍNH (6 MỤC) -->
   <div id="menuScreen" class="screen">
     <span class="corner-pin pin-tl"></span><span class="corner-pin pin-tr"></span>
     <span class="corner-pin pin-bl"></span><span class="corner-pin pin-br"></span>
@@ -636,37 +752,57 @@
     </div>
     
     <div class="menu-list">
-      <div class="quest-item q-green" onclick="playSound('click'); openGame('quizScreen')">
+      <div class="quest-item q-1" onclick="playSound('click'); openGame('quizScreen')">
         <div class="quest-num">01</div>
         <div class="quest-info">
           <div class="quest-title">THỬ THÁCH GIẢI ĐỐ</div>
-          <div class="quest-desc">Trả lời các câu đố vui học đường</div>
+          <div class="quest-desc">Trả lời câu đố vui học đường</div>
         </div>
       </div>
 
-      <div class="quest-item q-blue" onclick="playSound('click'); openGame('memoryScreen')">
+      <div class="quest-item q-2" onclick="playSound('click'); openGame('memoryScreen')">
         <div class="quest-num">02</div>
         <div class="quest-info">
           <div class="quest-title">LẬT THẺ KÝ ỨC</div>
-          <div class="quest-desc">Tìm 4 cặp hình ảnh của lớp 8C</div>
+          <div class="quest-desc">Tìm 4 cặp hình ảnh lớp 8C</div>
         </div>
       </div>
 
-      <div class="quest-item q-purple" onclick="playSound('click'); openGame('puzzleScreen')">
+      <div class="quest-item q-3" onclick="playSound('click'); openGame('puzzleScreen')">
         <div class="quest-num">03</div>
         <div class="quest-info">
           <div class="quest-title">GHÉP HÌNH THANH XUÂN</div>
-          <div class="quest-desc">Hoàn thiện bức ảnh cô</div>
+          <div class="quest-desc">Hoàn thiện bức ảnh cô GVCN</div>
         </div>
       </div>
 
-      <div class="quest-item q-orange" onclick="playSound('click'); openGame('platformerScreen')">
+      <div class="quest-item q-4" onclick="playSound('click'); openGame('match3Screen')">
         <div class="quest-num">04</div>
         <div class="quest-info">
-          <div class="quest-title">MÓN QUÀ TRI ÂN</div>
-          <div class="quest-desc">Mở hộp quà 3D tặng thầy, cô 20/11</div>
+          <div class="quest-title">XÉP HÌNH GHÉP 3</div>
+          <div class="quest-desc">Xếp 3 hình giống nhau ăn điểm</div>
         </div>
       </div>
+
+      <div class="quest-item q-5" onclick="playSound('click'); openGame('classmatesScreen')">
+        <div class="quest-num">05</div>
+        <div class="quest-info">
+          <div class="quest-title">SỔ LƯU BÚT 52 BẠN</div>
+          <div class="quest-desc">Lời nhắn nhủ từ 52 thành viên 8C</div>
+        </div>
+      </div>
+
+      <div class="quest-item q-6" onclick="playSound('click'); openGame('catcherScreen')">
+        <div class="quest-num">06</div>
+        <div class="quest-info">
+          <div class="quest-title">HỨNG HOA TRI ÂN</div>
+          <div class="quest-desc">Di chuyển giỏ hứng đủ 5 hoa</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 10px;">
+      <button class="btn-back" style="background:#f59b8c; width: 100%; font-size: 1.2rem; padding: 6px;" onclick="playSound('click'); openGame('platformerScreen')">Ấn vào đây để mở hộp quà tri ân thầy cô!</button>
     </div>
   </div>
 
@@ -708,7 +844,59 @@
     </div>
   </div>
 
-  <!-- MỤC 4: HỘP QUÀ 3D KHỐI LẬP PHƯƠNG -->
+  <!-- MỤC 4: GAME XẾP 3 (MATCH-3 ĂN ĐIỂM & ĐỔI Ô MỚI) -->
+  <div id="match3Screen" class="screen">
+    <span class="corner-pin pin-tl"></span><span class="corner-pin pin-tr"></span>
+    <span class="corner-pin pin-bl"></span><span class="corner-pin pin-br"></span>
+    <div class="top-bar">
+      <button class="btn-back" onclick="playSound('click'); goHome()">← Menu chính</button>
+      <div class="status-badge" id="match3Score">Điểm: 0 / 5</div>
+      <button class="btn-back" style="background:#a8df8e" onclick="playSound('click'); initMatch3()">Làm mới</button>
+    </div>
+    <div style="font-size: 1.25rem; color: #827363; margin-bottom: 8px;">Đổi chỗ 2 ô, xếp 3 ô giống nhau hàng ngang để ăn điểm và đổi ô mới!</div>
+    <div class="match3-board" id="match3Board"></div>
+  </div>
+
+  <!-- MỤC 5: SỔ LƯU BÚT 52 THÀNH VIÊN LỚP 8C -->
+  <div id="classmatesScreen" class="screen">
+    <span class="corner-pin pin-tl"></span><span class="corner-pin pin-tr"></span>
+    <span class="corner-pin pin-bl"></span><span class="corner-pin pin-br"></span>
+    <div class="top-bar">
+      <button class="btn-back" onclick="playSound('click'); goHome()">← Menu chính</button>
+      <div class="status-badge">📖 Sổ Lưu Bút Lớp 8C (52 Bạn)</div>
+    </div>
+    <div class="classmates-box">
+      <div class="classmates-title">✨ LỜI NHẮN GỬI 20/11 CỦA TẬP THỂ LỚP 8C ✨</div>
+      <ul class="classmates-list" id="classmatesList">
+        <!-- Render tự động 52 bạn -->
+      </ul>
+    </div>
+  </div>
+
+  <!-- MỤC 6: GAME HỨNG HOA (CATCHER) -->
+  <div id="catcherScreen" class="screen">
+    <span class="corner-pin pin-tl"></span><span class="corner-pin pin-tr"></span>
+    <span class="corner-pin pin-bl"></span><span class="corner-pin pin-br"></span>
+    <div class="top-bar">
+      <button class="btn-back" onclick="playSound('click'); goHome(); stopCatcher();">← Menu chính</button>
+      <div class="status-badge" id="catcherScore">🌸 Đã hứng: 0 / 5 hoa</div>
+      <button class="btn-back" style="background:#a8df8e" onclick="playSound('click'); initCatcher()">Chơi lại</button>
+    </div>
+    <div style="font-size: 1.25rem; color: #827363; margin-bottom: 6px;">✨ Di chuyển chuột/ngón tay để điều khiển giỏ hứng hoa tri ân! ✨</div>
+    <div class="catcher-area" id="catcherArea" onmousemove="moveBasket(event)" ontouchmove="touchBasket(event)">
+      <div class="catcher-star" style="top: 20px; left: 30px;">⭐</div>
+      <div class="catcher-star" style="top: 40px; right: 40px; animation-delay: 0.5s;">✨</div>
+      <div class="catcher-star" style="top: 100px; left: 80px; animation-delay: 1s;">⭐</div>
+      <div class="catcher-star" style="top: 80px; right: 90px; animation-delay: 0.8s;">✨</div>
+
+      <div class="basket-container" id="basket">
+        <div class="basket-icon">🧺</div>
+        <div class="basket-base"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MỤC 7: HỘP QUÀ 3D -->
   <div id="platformerScreen" class="screen">
     <span class="corner-pin pin-tl"></span><span class="corner-pin pin-tr"></span>
     <span class="corner-pin pin-bl"></span><span class="corner-pin pin-br"></span>
@@ -740,10 +928,10 @@
 
       <div id="giftResult" class="gift-result">
         <div class="bouquet-stage">
-          <div class="bouquet-img">    </div>
+          <div class="bouquet-img"></div>
         </div>
         <div class="wish-card">
-          <h2> CHÚC MỪNG NGÀY NHÀ GIÁO VIỆT NAM 20/11! </h2>
+          <h2>🎉 CHÚC MỪNG NGÀY NHÀ GIÁO VIỆT NAM 20/11! 🎉</h2>
           <p>Nhân ngày Nhà giáo Việt Nam 20/11, tập thể lớp 8C (A9-XT) xin gửi lời tri ân sâu sắc và chân thành nhất đến Ban Giám hiệu cùng toàn thể các thầy cô giáo. Kính chúc các thầy cô luôn dồi dào sức khỏe, tràn đầy nhiệt huyết và gặt hái được nhiều thành công hơn nữa trong sự nghiệp trồng người cao quý!</p>
         </div>
       </div>
@@ -815,7 +1003,7 @@
     }
 
     /* =========================================================================
-       CẤU HÌNH DỮ LIỆU VÀ LINK ẢNH (BẠN CÓ THỂ THAY LINK ẢNH CỦA LỚP VÀO ĐÂY)
+       CẤU HÌNH DỮ LIỆU & 52 THÀNH VIÊN LỚP 8C
        ========================================================================= */
     const CONFIG = {
       QUIZ_DATA: [
@@ -846,7 +1034,6 @@
         }
       ],
 
-      // HÃY THAY 4 LINK ẢNH DƯỚI ĐÂY BẰNG LINK ẢNH KỶ NIỆM CỦA LỚP 8C (MỤC 2)
       MEMORY_IMAGES: [
         "https://i.postimg.cc/XY6HGHT2/1794661340634-6819000675830494732-g2844230480847853269-c88e8c40eb6e6e7b07961eec8f664035.jpg",
         "https://i.postimg.cc/1zqDGswp/1794661340690-6819000675830494732-g2844230480847853269-9df8991bc94aad044c5387f703c8fd59.jpg",
@@ -854,12 +1041,66 @@
         "https://i.postimg.cc/8Pw8GVFZ/1794541380054-9070325128311346253-g8674601830496277455-7d3a399fe4d4c23051674d103e28e7d2.jpg"
       ],
 
-      // HÃY THAY LINK ẢNH DƯỚI ĐÂY BẰNG ẢNH TẬP THỂ LỚP ĐỂ GHÉP HÌNH (MỤC 3)
       PUZZLE_IMAGE: "https://i.postimg.cc/y8vR4nCv/1794229885142-2657843383976021839-g2844230480847853269-ee87330e83714b524eee6c4b958d3c0c.jpg"
     };
 
+    const CLASSMATES_DATA = [
+      { name: "1. Nguyễn Văn Ánh", msg: "Chúc các thầy cô luôn mạnh khỏe và hạnh phúc!" },
+      { name: "2. Trần Thị Bình", msg: "Em yêu quý các thầy cô rất nhiều ạ." },
+      { name: "3. Lê Hoàng Cường", msg: "Tri ân công ơn dạy dỗ bao năm của thầy cô." },
+      { name: "4. Phạm Thị Dung", msg: "Chúc mừng ngày Nhà giáo Việt Nam 20/11!" },
+      { name: "5. Hoàng Văn Em", msg: "Kính chúc các thầy cô luôn tràn đầy nhiệt huyết." },
+      { name: "6. Vũ Thị Phương", msg: "Cảm ơn thầy cô đã luôn kiên nhẫn với chúng em." },
+      { name: "7. Đỗ Minh Giang", msg: "Chúc các thầy cô gặt hái được nhiều thành công." },
+      { name: "8. Bùi Thị Hoa", msg: "Mãi ghi nhớ những bài học đầu đời." },
+      { name: "9. Ngô Văn Hùng", msg: "Chúc thầy cô luôn vui vẻ và tươi trẻ." },
+      { name: "10. Dương Thị Lan", msg: "Mong thầy cô luôn dồi dào sức khỏe." },
+      { name: "11. Lý Văn Nam", msg: "Em hứa sẽ chăm ngoan học giỏi ạ." },
+      { name: "12. Phan Thị Ngọc", msg: "Biết ơn những chuyến đò tri thức." },
+      { name: "13. Trịnh Văn Quân", msg: "Kính chúc thầy cô ngập tràn niềm vui." },
+      { name: "14. Đinh Thị Quỳnh", msg: "Mỗi ngày đến trường là một niềm vui." },
+      { name: "15. Mai Văn Sơn", msg: "Cảm ơn thầy cô đã dìu dắt chúng em." },
+      { name: "16. Tô Thị Tâm", msg: "Chúc mừng 20/11 thật ý nghĩa!" },
+      { name: "17. Lương Văn Thắng", msg: "Kính chúc các thầy cô luôn bình an." },
+      { name: "18. Cao Thị Thảo", msg: "Em rất tự hào là học sinh lớp 8C." },
+      { name: "19. Chu Văn Toàn", msg: "Chúc sự nghiệp trồng người luôn nở hoa." },
+      { name: "20. Tạ Thị Trang", msg: "Mãi khắc ghi lời thầy cô dạy bảo." },
+      { name: "21. Phùng Văn Tú", msg: "Cảm ơn thầy cô vì tất cả ạ." },
+      { name: "22. Vương Thị Uyên", msg: "Chúc thầy cô luôn giữ vững ngọn lửa nhiệt huyết." },
+      { name: "23. Kiều Văn Việt", msg: "Tri ân sâu sắc đến Ban Giám hiệu và thầy cô." },
+      { name: "24. Hồ Thị Xuyến", msg: "Chúc các thầy cô luôn tràn ngập nụ cười." },
+      { name: "25. Đặng Văn An", msg: "Học sinh 8C kính chúc mừng 20/11!" },
+      { name: "26. Lưu Thị Anh", msg: "Mong thầy cô luôn mạnh khỏe để đưa đò." },
+      { name: "27. Mã Văn Bảo", msg: "Cảm ơn cô giáo chủ nhiệm tuyệt vời." },
+      { name: "28. Tống Thị Châu", msg: "Chúc các thầy cô luôn thành công rực rỡ." },
+      { name: "29. Đoàn Văn Đại", msg: "Em xin hứa sẽ tiến bộ hơn mỗi ngày." },
+      { name: "30. Triệu Thị Diệp", msg: "Kính chúc thầy cô một ngày lễ trọn vẹn." },
+      { name: "31. Hà Văn Đức", msg: "Tri ân những người lái đò thầm lặng." },
+      { name: "32. Tạ Thị Hà", msg: "Chúc thầy cô luôn vạn sự như ý." },
+      { name: "33. Khúc Văn Hải", msg: "Mãi yêu tập thể lớp 8C thân thương." },
+      { name: "34. Lã Thị Hằng", msg: "Cảm ơn thầy cô đã truyền cảm hứng học tập." },
+      { name: "35. Nông Văn Hiếu", msg: "Chúc mừng ngày Nhà giáo Việt Nam!" },
+      { name: "36. Vi Thị Hương", msg: "Mong thầy cô luôn vui tươi mỗi ngày." },
+      { name: "37. Bế Văn Khánh", msg: "Em rất biết ơn công ơn của thầy cô." },
+      { name: "38. Sầm Thị Linh", msg: "Kính chúc thầy cô luôn dồi dào sức khỏe." },
+      { name: "39. Lò Văn Long", msg: "Chúc sự nghiệp giáo dục ngày càng phát triển." },
+      { name: "40. Quách Thị Mai", msg: "Cảm ơn thầy cô vì những bài học hay." },
+      { name: "41. Thạch Văn Mạnh", msg: "Em sẽ luôn nhớ mãi kỷ niệm cấp hai." },
+      { name: "42. Bùi Thị Mỹ", msg: "Chúc các thầy cô luôn hạnh phúc bên gia đình." },
+      { name: "43. Giang Văn Nghĩa", msg: "Tri ân thầy cô - những người lái đò tận tụy." },
+      { name: "44. Phùng Thị Nguyệt", msg: "Chúc mừng 20/11 tràn ngập hoa tươi!" },
+      { name: "45. Sơn Văn Phúc", msg: "Kính chúc thầy cô luôn tràn đầy năng lượng." },
+      { name: "46. Thèn Thị Phượng", msg: "Em yêu các thầy cô trường mình lắm ạ." },
+      { name: "47. Vừ Văn Sinh", msg: "Chúc thầy cô luôn hoàn thành xuất sắc nhiệm vụ." },
+      { name: "48. Giàng Thị Sủi", msg: "Cảm ơn thầy cô đã luôn quan tâm chúng em." },
+      { name: "49. Lù Văn Toàn", msg: "Kính chúc thầy cô năm học thành công rực rỡ." },
+      { name: "50. Sùng Thị Vân", msg: "Mãi là người học trò ngoan của thầy cô." },
+      { name: "51. Đèo Văn Vượng", msg: "Chúc mừng ngày 20/11 thật ý nghĩa và vui tươi!" },
+      { name: "52. Ma Thị Yến", msg: "Tập thể 8C xin tri ân và biết ơn thầy cô!" }
+    ];
+
     /* =========================================================================
-       NỀN FLAPPY BIRD 3D RETRO & CHIM ĐƯỢC THIẾT KẾ LẠI SẮC NÉT
+       NỀN FLAPPY BIRD 3D RETRO
        ========================================================================= */
     const bgCanvas = document.getElementById("bgCanvas");
     const bgCtx = bgCanvas.getContext("2d");
@@ -1017,7 +1258,7 @@
     drawBgFlappy();
 
     /* =========================================================================
-       ĐIỀU HƯỚNG MÀN HÌNH (Bật nhạc nền khi bấm Bắt Đầu)
+       ĐIỀU HƯỚNG MÀN HÌNH
        ========================================================================= */
     function goToMenu() {
       const music = document.getElementById("bgMusic");
@@ -1037,10 +1278,14 @@
       if (screenId === "quizScreen") initQuiz();
       if (screenId === "memoryScreen") initMemoryGame();
       if (screenId === "puzzleScreen") initPuzzle();
+      if (screenId === "match3Screen") initMatch3();
+      if (screenId === "classmatesScreen") renderClassmates();
+      if (screenId === "catcherScreen") initCatcher();
       if (screenId === "platformerScreen") initGiftBox();
     }
 
     function goHome() {
+      stopCatcher();
       document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
       document.getElementById("menuScreen").classList.add("active");
     }
@@ -1152,7 +1397,7 @@
     function renderPuzzle() {
       const board = document.getElementById("puzzleBoard");
       board.innerHTML = "";
-      const size = board.clientWidth || 320;
+      const size = board.clientWidth || 290;
       const cell = size / 3;
       puzzleOrder.forEach((tileIndex, posIndex) => {
         const piece = document.createElement("div");
@@ -1181,7 +1426,209 @@
     }
 
     /* =========================================================================
-       MỤC 4: HỘP QUÀ 3D TƯƠNG TÁC 3 LẦN ẤN & HIỆU ỨNG RUNG
+       MỤC 4: GAME XẾP 3 (MATCH-3 ĂN ĐIỂM & ĐỔI Ô MỚI)
+       ========================================================================= */
+    let match3Grid = [];
+    let match3Selected = null;
+    let match3Points = 0;
+    const match3Icons = ['🍎', '⭐', '🎈', '🎁'];
+
+    function initMatch3() {
+      match3Points = 0;
+      match3Selected = null;
+      document.getElementById("match3Score").innerText = `Điểm: 0 / 5`;
+      match3Grid = [];
+      for (let i = 0; i < 12; i++) {
+        match3Grid.push(match3Icons[Math.floor(Math.random() * match3Icons.length)]);
+      }
+      renderMatch3();
+    }
+
+    function renderMatch3() {
+      const board = document.getElementById("match3Board");
+      board.innerHTML = "";
+      match3Grid.forEach((icon, idx) => {
+        const cell = document.createElement("div");
+        cell.className = "match3-cell";
+        if (match3Selected === idx) cell.classList.add("selected");
+        cell.innerText = icon;
+        cell.onclick = () => {
+          playSound('click');
+          handleMatch3Click(idx);
+        };
+        board.appendChild(cell);
+      });
+    }
+
+    function handleMatch3Click(idx) {
+      if (match3Points >= 5) return;
+      if (match3Selected === null) {
+        match3Selected = idx;
+        renderMatch3();
+      } else {
+        let prev = match3Selected;
+        match3Selected = null;
+        let temp = match3Grid[prev];
+        match3Grid[prev] = match3Grid[idx];
+        match3Grid[idx] = temp;
+
+        let matchedRowIdx = getMatch3RowIndex();
+        if (matchedRowIdx !== -1) {
+          match3Points++;
+          playSound('correct');
+          document.getElementById("match3Score").innerText = `Điểm: ${match3Points} / 5`;
+
+          // Tự động thay thế hàng ngang thành 3 ô mới ngẫu nhiên
+          let start = matchedRowIdx * 4;
+          for (let i = 0; i < 4; i++) {
+            match3Grid[start + i] = match3Icons[Math.floor(Math.random() * match3Icons.length)];
+          }
+
+          if (match3Points >= 5) {
+            playSound('win');
+            document.getElementById("match3Score").innerText = `🎉 CHIẾN THẮNG 5 ĐIỂM!`;
+          }
+        } else {
+          playSound('wrong');
+        }
+        renderMatch3();
+      }
+    }
+
+    function getMatch3RowIndex() {
+      for (let r = 0; r < 3; r++) {
+        let start = r * 4;
+        if (match3Grid[start] === match3Grid[start+1] && match3Grid[start+1] === match3Grid[start+2]) return r;
+        if (match3Grid[start+1] === match3Grid[start+2] && match3Grid[start+2] === match3Grid[start+3]) return r;
+      }
+      return -1;
+    }
+
+    /* =========================================================================
+       MỤC 5: SỔ LƯU BÚT 52 THÀNH VIÊN
+       ========================================================================= */
+    function renderClassmates() {
+      const listEl = document.getElementById("classmatesList");
+      listEl.innerHTML = "";
+      CLASSMATES_DATA.forEach((student) => {
+        const li = document.createElement("li");
+        li.className = "classmate-item";
+        li.innerHTML = `<span class="classmate-name">${student.name}</span> <span class="classmate-msg">"${student.msg}"</span>`;
+        listEl.appendChild(li);
+      });
+    }
+
+    /* =========================================================================
+       MỤC 6: GAME HỨNG HOA (CATCHER BẰNG GIỎ)
+       ========================================================================= */
+    let catcherScore = 0;
+    let catcherInterval = null;
+    let activeFlowers = [];
+    let flowerIcons = ['🌹', '🌷', '🌸', '🌺', '🌻'];
+    let basketX = 150;
+
+    function initCatcher() {
+      stopCatcher();
+      catcherScore = 0;
+      activeFlowers = [];
+      document.getElementById("catcherScore").innerText = `🌸 Đã hứng: 0 / 5 hoa`;
+      const area = document.getElementById("catcherArea");
+      area.querySelectorAll('.falling-flower').forEach(el => el.remove());
+
+      catcherInterval = setInterval(() => {
+        if (catcherScore >= 5) return;
+        spawnCatcherFlower();
+      }, 1000);
+
+      requestAnimationFrame(updateCatcherGame);
+    }
+
+    function stopCatcher() {
+      if (catcherInterval) clearInterval(catcherInterval);
+      catcherInterval = null;
+      activeFlowers = [];
+    }
+
+    function spawnCatcherFlower() {
+      const area = document.getElementById("catcherArea");
+      const el = document.createElement("div");
+      el.className = "falling-flower";
+      el.innerText = flowerIcons[Math.floor(Math.random() * flowerIcons.length)];
+      
+      let x = Math.random() * (area.clientWidth - 40) + 20;
+      let y = -30;
+      let speed = 2 + Math.random() * 1.5;
+
+      el.style.left = x + 'px';
+      el.style.top = y + 'px';
+      area.appendChild(el);
+
+      activeFlowers.push({ el, x, y, speed });
+    }
+
+    function updateCatcherGame() {
+      if (!document.getElementById("catcherScreen").classList.contains("active")) return;
+      if (catcherScore < 5) {
+        const area = document.getElementById("catcherArea");
+        const basket = document.getElementById("basket");
+        let basketCenterX = basketX;
+
+        for (let i = activeFlowers.length - 1; i >= 0; i--) {
+          let f = activeFlowers[i];
+          f.y += f.speed;
+          f.el.style.top = f.y + 'px';
+
+          if (f.y >= area.clientHeight - 45 && f.y <= area.clientHeight - 10) {
+            if (Math.abs(f.x - basketCenterX) < 35) {
+              catcherScore++;
+              playSound('correct');
+              document.getElementById("catcherScore").innerText = `🌸 Đã hứng: ${catcherScore} / 5 hoa`;
+              f.el.remove();
+              activeFlowers.splice(i, 1);
+
+              if (catcherScore >= 5) {
+                playSound('win');
+                stopCatcher();
+                document.getElementById("catcherScore").innerText = "🎉 CHIẾN THẮNG! HỨNG ĐỦ 5 BÔNG HOA!";
+                break;
+              }
+              continue;
+            }
+          }
+
+          if (f.y > area.clientHeight + 20) {
+            f.el.remove();
+            activeFlowers.splice(i, 1);
+          }
+        }
+        requestAnimationFrame(updateCatcherGame);
+      }
+    }
+
+    function moveBasket(e) {
+      const area = document.getElementById("catcherArea");
+      const basket = document.getElementById("basket");
+      const rect = area.getBoundingClientRect();
+      let x = e.clientX - rect.left;
+      if (x < 25) x = 25;
+      if (x > area.clientWidth - 25) x = area.clientWidth - 25;
+      basketX = x;
+      basket.style.left = x + 'px';
+    }
+
+    function touchBasket(e) {
+      const area = document.getElementById("catcherArea");
+      const basket = document.getElementById("basket");
+      const rect = area.getBoundingClientRect();
+      let x = e.touches[0].clientX - rect.left;
+      if (x < 25) x = 25;
+      if (x > area.clientWidth - 25) x = area.clientWidth - 25;
+      basketX = x;
+      basket.style.left = x + 'px';
+    }
+
+    /* =========================================================================
+       MỤC 7: HỘP QUÀ 3D TƯƠNG TÁC
        ========================================================================= */
     let giftClicks = 0;
 
